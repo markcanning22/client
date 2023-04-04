@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 
@@ -12,7 +12,7 @@ const PostList: React.FC = () => {
     const [posts, setPosts] = useState<Post[]>([]);
 
     const fetchPosts = async () => {
-        const res = await axios.get('http://localhost:4000/posts');
+        const res: AxiosResponse = await axios.get('http://localhost:4000/posts');
 
         setPosts(res.data);
     };
