@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const PostCreate = () => {
+const PostCreate: React.FC = () => {
     const [title, setTitle] = useState('');
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         await axios.post('http://localhost:4000/posts', {

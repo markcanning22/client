@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
 import axios from "axios";
 
-const CommentCreate = ({postId}) => {
+interface CommentCreateProps
+{
+    postId: string
+}
+
+const CommentCreate: React.FC<CommentCreateProps> = ({postId}) => {
     const [content, setContent] = useState('');
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
@@ -23,7 +28,7 @@ const CommentCreate = ({postId}) => {
                         className="form-control"
                         value={content}
                         onChange={e => setContent(e.target.value)
-                    }/>
+                        }/>
                 </div>
                 <button className="btn btn-primary">Submit</button>
             </form>

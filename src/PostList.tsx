@@ -3,8 +3,13 @@ import axios from 'axios';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 
-const PostList = () => {
-    const [posts, setPosts] = useState({});
+type Post = {
+    id: string;
+    title: string;
+};
+
+const PostList: React.FC = () => {
+    const [posts, setPosts] = useState<Post[]>([]);
 
     const fetchPosts = async () => {
         const res = await axios.get('http://localhost:4000/posts');
