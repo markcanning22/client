@@ -3,16 +3,23 @@ import axios, {AxiosResponse} from 'axios';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 
+type Comment = {
+    id: string;
+    content: string;
+    postId: string;
+};
+
 type Post = {
     id: string;
     title: string;
+    comments: Comment[]
 };
 
 const PostList: React.FC = () => {
     const [posts, setPosts] = useState<Post[]>([]);
 
     const fetchPosts = async () => {
-        const res: AxiosResponse = await axios.get('http://localhost:4000/posts');
+        const res: AxiosResponse = await axios.get('http://localhost:4002/posts');
 
         setPosts(res.data);
     };
@@ -26,9 +33,7 @@ const PostList: React.FC = () => {
             <div className="card" style={{ width: '30%', marginBottom: '20px'}} key={post.id}>
                 <div className="card-body">
                     <h3>{post.title}</h3>
-                    <CommentList
-                        postId={post.id}
-                    />
+                    <CommentList comments={post.comments}/>
                     <CommentCreate
                         postId={post.id}
                     />
