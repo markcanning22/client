@@ -3,10 +3,17 @@ import axios, {AxiosResponse} from 'axios';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 
+enum ModerationStatus {
+    REJECTED = 'rejected',
+    APPROVED = 'approved',
+    PENDING = 'pending'
+}
+
 type Comment = {
     id: string;
     content: string;
     postId: string;
+    status: ModerationStatus;
 };
 
 type Post = {
